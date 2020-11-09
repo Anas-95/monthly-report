@@ -1,3 +1,7 @@
+from json.decoder import JSONDecodeError
+import json
+
+
 # Takes start of the day time and a specific hour
 # Returns the specified hour of a day
 def hour_of_day(s_today, s_hour):
