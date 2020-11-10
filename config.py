@@ -18,3 +18,5 @@ def get_logs_dir():
     return os.path.join(os.path.dirname(__file__), "logs")
 
 
+def json_files_dir():
+    return "/home/scripts/offense-stat/exports/arc/"
