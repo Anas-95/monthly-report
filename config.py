@@ -1,3 +1,6 @@
+from os import path
+
+
 # Returns API headers of QRadar
 def get_headers():
     return {
@@ -10,12 +13,12 @@ def get_headers():
 
 # Returns current directory
 def get_dir():
-    return os.path.dirname(__file__)
+    return path.dirname(__file__)
 
 
 # Returns logs directory for current script
 def get_logs_dir():
-    return os.path.join(os.path.dirname(__file__), "logs")
+    return path.join(path.dirname(__file__), "logs")
 
 
 def json_files_dir():

@@ -7,7 +7,6 @@ import urllib3
 from datetime import datetime, timedelta
 from config import get_headers, get_dir, get_logs_dir, json_files_dir
 from helpers import hour_of_day, to_ms_timestamp, read_json
-from os import system, path
 
 
 if __name__ == "__main__":
@@ -16,13 +15,15 @@ if __name__ == "__main__":
     session = requests.session()
     headers = get_headers()
     today = datetime.today()
+    current_year_week = today.strftime("%Y-%U")
     current_year = today.strftime("%Y")
     current_week = today.strftime("%U")
     weeks = reversed([eval(current_week + '-i') for i in range(1, 5)])
-    # logs_count = [read_json(f"{json_files_dir}ec_{current_year}-{week}.json")['Count'] for week in weeks]
-    # logs_count = f"{int(sum([sum(l.values()) for l in logs_count])):,}"
+    logs_count = [read_json(f"{json_files_dir()}ec_{current_year}-{week}.json")['Count'] for week in weeks]
+    logs_count = f"{int(sum([sum(l.values()) for l in logs_count])):,}"
 
-    print(datetime.now().replace(month=1, day=1, hour=0, minute=0, second=0, microsecond=0)+timedelta(weeks=45))
+    # print(datetime.now().replace(month=1, day=1, hour=0, minute=0, second=0, microsecond=0)+timedelta(weeks=44))
+    print(datetime.strptime(current_year_week, "%Y-%U"))
     delta_weeks = [today+timedelta(weeks=w) for w in weeks]
     # print([str(w) for w in delta_weeks], timedelta())
     # s_time = hour_of_day(today_st, 1)

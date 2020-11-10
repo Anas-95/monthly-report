@@ -1,5 +1,8 @@
-from json.decoder import JSONDecodeError
 import json
+from json.decoder import JSONDecodeError
+from os import system
+from datetime import datetime
+from config import get_logs_dir
 
 
 # Takes start of the day time and a specific hour
@@ -24,8 +27,8 @@ def read_json(file_path):
             try:
                 return json.load(f)
             except JSONDecodeError:
-                os.system(f'echo "Log: JSON File format not supported, {datetime.now().strftime("%b %dth, %Y %H:%M:%S")}" >> {Config.get_logs_dir()}/files.log')
+                system(f'echo "Log: JSON File format not supported, {datetime.now().strftime("%b %dth, %Y %H:%M:%S")}" >> {get_logs_dir()}/files.log')
                 exit(0)
     except FileNotFoundError:
-        os.system(f'echo "Log: File not found, {datetime.now().strftime("%b %dth, %Y %H:%M:%S")}" >> {Config.get_logs_dir()}/files.log')
+        system(f'echo "Log: File not found, {datetime.now().strftime("%b %dth, %Y %H:%M:%S")}" >> {get_logs_dir()}/files.log')
         exit(0)
