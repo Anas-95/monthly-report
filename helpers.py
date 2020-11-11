@@ -5,13 +5,6 @@ from datetime import datetime
 from config import get_logs_dir
 
 
-# Takes start of the day time and a specific hour
-# Returns the specified hour of a day
-def hour_of_day(s_today, s_hour):
-    s_time = s_today + timedelta(hours=s_hour)
-    return s_time
-
-
 # Takes timestamp in seconds
 # Returns timestamp in milliseconds
 def to_ms_timestamp(sec_timestamp):
