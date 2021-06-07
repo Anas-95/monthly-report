@@ -7,7 +7,7 @@ def get_headers():
         'Version': '11.0',
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'SEC': '1fdb30bf-ac3c-4563-95e9-f8e326095604'
+        'SEC': '713e4a5b-e3f3-494f-982f-45edf327d0bc'
     }
 
 

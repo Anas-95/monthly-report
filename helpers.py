@@ -1,16 +1,16 @@
 import json
 from json.decoder import JSONDecodeError
-from os import system
+from os import system, path
 from datetime import datetime
-from config import get_logs_dir
+from config import get_dir, get_logs_dir
+import pandas as pd
 
 
-# Takes timestamp in seconds
+# Takes date
 # Returns timestamp in milliseconds
-def to_ms_timestamp(sec_timestamp):
-    ms_timestamp = datetime.timestamp(sec_timestamp)
-    ms_timestamp = int(ms_timestamp * 1000)
-    return ms_timestamp
+def to_ms_timestamp(date_):
+    ms_timestamp = datetime.timestamp(date_)
+    return int(ms_timestamp * 1000)
 
 
 # Read json file and returns the file
@@ -25,3 +25,13 @@ def read_json(file_path):
     except FileNotFoundError:
         system(f'echo "Log: File not found, {datetime.now().strftime("%b %dth, %Y %H:%M:%S")}" >> {get_logs_dir()}/files.log')
         exit(0)
+
+
+def write_to_file(logs_count, alerts_count, file_path):
+    count = {
+        "Logs Count": f"{logs_count:,}",
+        "Alerts Count": f"{alerts_count:,}"
+    }
+    
+    df = pd.DataFrame(count, index=[0])
+    df.to_csv(file_path, index=False)
